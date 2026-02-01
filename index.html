@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key System</title>
+    <style>
+        body { background: #050505; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
+        .card { background: #111; border: 2px solid #0000ff; border-radius: 15px; padding: 30px; margin-top: 50px; box-shadow: 0 0 20px rgba(0,0,255,0.3); max-width: 400px; margin: auto; }
+        h1 { color: #0000ff; font-size: 26px; margin-bottom: 10px; }
+        p { color: #888; font-size: 14px; margin-bottom: 20px; }
+        .key-box { background: #000; border: 2px dashed #00ff00; color: #00ff00; padding: 15px; font-family: monospace; font-size: 22px; margin: 20px 0; display: none; border-radius: 8px; font-weight: bold; }
+        
+        /* Botón Azul */
+        .btn-blue { background: #0000ff; color: white; border: none; padding: 15px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 18px; transition: 0.3s; }
+        .btn-blue:hover { background: #0000cc; box-shadow: 0 0 15px rgba(0,0,255,0.5); }
+        .btn-blue:active { transform: scale(0.95); }
+
+        .lang-sub { font-size: 12px; color: #555; margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1 id="title">ACCESO / ACCESS</h1>
+        <p id="desc">Genera tu llave de acceso aleatoria<br><span style="font-size: 12px;">Generate your random access key</span></p>
+        
+        <div id="key-box" class="key-box"></div>
+        
+        <button class="btn-blue" onclick="generateKey()">
+            TEN TU KEY <br>
+            <span style="font-size: 12px; font-weight: normal;">(GET YOUR KEY)</span>
+        </button>
+    </div>
+
+    <script>
+        function generateKey() {
+            // Caracteres aleatorios
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let randomKey = "KEY-";
+            
+            for (let i = 0; i < 10; i++) {
+                randomKey += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            const box = document.getElementById("key-box");
+            box.innerText = randomKey;
+            box.style.display = "block";
+            
+            // Copiar al portapapeles automáticamente
+            navigator.clipboard.writeText(randomKey);
+            
+            // Alerta bilingüe
+            alert("Key: " + randomKey + "\n\n¡Copiada con éxito! / Copied successfully!");
+        }
+    </script>
+
+</body>
+</html>
